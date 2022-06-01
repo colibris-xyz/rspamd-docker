@@ -1,9 +1,9 @@
-FROM alpine:edge
+FROM alpine:3.16.0
 
 RUN apk add --no-cache glib-dev icu-dev libsodium-dev luajit-dev openssl1.1-compat-dev pcre2-dev perl ragel sqlite-dev zlib-dev zstd-dev vectorscan-dev \
   && apk add --no-cache --virtual .build-deps curl build-base cmake pkgconfig
 
-ARG RSPAMD_VERSION=3.0
+ARG RSPAMD_VERSION=3.2
 
 RUN curl -L -o /tmp/rspamd.zip https://github.com/rspamd/rspamd/archive/refs/tags/${RSPAMD_VERSION}.zip \
   && unzip -d /tmp/rspamd /tmp/rspamd.zip \
