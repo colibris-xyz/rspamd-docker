@@ -27,7 +27,7 @@ RUN mkdir /var/lib/rspamd \
   && mkdir /usr/local/etc/rspamd/override.d \
   && echo 'type = "console";' > /usr/local/etc/rspamd/override.d/logging.inc \
   && echo 'bind_socket = "*:11334";' > /usr/local/etc/rspamd/override.d/worker-controller.inc \
-  && echo 'pidfile = false;' > /usr/local/etc/rspamd/options.inc
+  && echo 'pidfile = false;' >> /usr/local/etc/rspamd/options.inc
 
 USER nobody
 
