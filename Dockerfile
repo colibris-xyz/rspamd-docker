@@ -9,7 +9,7 @@ RUN curl -L -o /tmp/rspamd.zip https://github.com/rspamd/rspamd/archive/refs/tag
   && unzip -d /tmp/rspamd /tmp/rspamd.zip \
   && mkdir /tmp/rspamd.build \
   && cd /tmp/rspamd.build \
-  && cmake /tmp/rspamd/rspamd-3.0 -DENABLE_HYPERSCAN=ON -DENABLE_LUAJIT=ON -DCMAKE_BUILD_TYPE=RelWithDebuginfo \
+  && cmake /tmp/rspamd/rspamd-${RSPAMD_VERSION} -DENABLE_HYPERSCAN=ON -DENABLE_LUAJIT=ON -DCMAKE_BUILD_TYPE=RelWithDebuginfo \
   && make \
   && make install \
   && rm /tmp/rspamd.zip \
