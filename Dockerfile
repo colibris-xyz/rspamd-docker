@@ -24,10 +24,11 @@ WORKDIR /usr/local/etc/rspamd
 RUN mkdir /var/lib/rspamd \
   && chown nobody:nobody /var/lib/rspamd \
   && chown nobody:nobody /usr/local/etc/rspamd \
-  && mkdir /usr/local/etc/rspamd/override.d \
-  && echo 'type = "console";' >> /usr/local/etc/rspamd/logging.inc \
-  && echo 'bind_socket = "*:11332";' >> /usr/local/etc/rspamd/worker-proxy.inc \
-  && echo 'bind_socket = "*:11334";' >> /usr/local/etc/rspamd/worker-controller.inc \
+  && sed -i '\
+     s/type = "file"/type = "console"/g; \
+     s/bind_socket = "localhost:11332"/bind_socket = "*:11332"/g; \
+     s/bind_socket = "localhost:11334"/bind_socket = "*:11334"/g; \
+     ' /usr/local/etc/rspamd/rspamd.conf \
   && echo 'pidfile = false;' >> /usr/local/etc/rspamd/options.inc
 
 USER nobody
