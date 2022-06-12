@@ -1,5 +1,12 @@
 {
   "extends": [
-    "config:base"
-  ]
+    "config:base",
+    "docker:enableMajor"
+  ],
+  "regexManagers": [{
+    "fileMatch": ["^Dockerfile$"],
+    "matchStrings": ["ARG RSPAMD_VERSION=(?<currentValue>.*?)\n"],
+    "depNameTemplate": "rspamd/rspamd",
+    "datasourceTemplate": "github-releases"
+  }]
 }
