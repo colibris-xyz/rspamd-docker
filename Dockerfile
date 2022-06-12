@@ -27,6 +27,7 @@ RUN mkdir /var/lib/rspamd \
   && sed -i '\
      s/type = "file"/type = "console"/g; \
      s/bind_socket = "localhost:11332"/bind_socket = "*:11332"/g; \
+     s/bind_socket = "localhost:11333"/bind_socket = "*:11333"/g; \
      s/bind_socket = "localhost:11334"/bind_socket = "*:11334"/g; \
      ' /usr/local/etc/rspamd/rspamd.conf \
   && echo 'pidfile = false;' >> /usr/local/etc/rspamd/options.inc
