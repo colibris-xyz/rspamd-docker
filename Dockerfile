@@ -3,12 +3,12 @@ FROM alpine:3.16.0
 ARG TARGETPLATFORM
 
 RUN apk add --no-cache glib-dev icu-dev libsodium-dev luajit-dev openssl1.1-compat-dev pcre2-dev perl ragel sqlite-dev zlib-dev zstd-dev \
-  && if [ "$TARGETPLATFORM" = "linux/amd64" ]; then apk add --no-cache vectorscan-dev; fi \
-  && apk add --no-cache --virtual .build-deps curl build-base cmake pkgconfig
+  && if [ "$TARGETPLATFORM" = "linux/amd64" ]; then apk add --no-cache vectorscan-dev; fi
 
 ARG RSPAMD_VERSION=3.2
 
-RUN curl -L -o /tmp/rspamd.zip https://github.com/rspamd/rspamd/archive/refs/tags/${RSPAMD_VERSION}.zip \
+RUN apk add --no-cache --virtual .build-deps curl build-base cmake pkgconfig \
+  && curl -L -o /tmp/rspamd.zip https://github.com/rspamd/rspamd/archive/refs/tags/${RSPAMD_VERSION}.zip \
   && unzip -d /tmp/rspamd /tmp/rspamd.zip \
   && mkdir /tmp/rspamd.build \
   && cd /tmp/rspamd.build \
