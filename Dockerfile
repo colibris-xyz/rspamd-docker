@@ -2,7 +2,7 @@ FROM alpine:3.18.4
 
 ARG TARGETPLATFORM
 
-RUN apk add --no-cache glib-dev icu-dev libsodium-dev luajit-dev openssl1.1-compat-dev pcre2-dev perl ragel sqlite-dev zlib-dev zstd-dev \
+RUN apk add --no-cache elfutils-dev glib-dev icu-dev libsodium-dev luajit-dev openssl1.1-compat-dev pcre2-dev perl ragel sqlite-dev zlib-dev zstd-dev \
   && if [ "$TARGETPLATFORM" = "linux/amd64" ]; then apk add --no-cache vectorscan-dev; fi
 
 ARG RSPAMD_VERSION=3.7.1
